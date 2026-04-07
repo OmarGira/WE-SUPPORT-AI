@@ -1,0 +1,20 @@
+# Environments
+.env
+.venv/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Vector DB & Heavy Data (We don't push heavy indices to GitHub)
+data/faiss_index.bin
+data/bm25_index.pkl
+
+# VS Code / OS files
+.vscode/
+.DS_Store
