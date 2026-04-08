@@ -129,16 +129,17 @@ class WEAssistant:
                 break # If it succeeds, break out of the retry loop.
             except Exception as e:
                 error_msg = str(e).lower()
-                # Catching specific quota/rate-limiting errors (HTTP 429)
+                # إذا كان الخطأ بسبب ضغط الرسائل أو انتهاء الكوتة (429)
                 if "429" in error_msg or "quota" in error_msg or "exhausted" in error_msg:
                     if attempt < 2:
-                        time.sleep(2) # Exponential/fixed backoff: wait 2 seconds and try again.
+                        time.sleep(2) 
                         continue
                     else:
-                        raise Exception("عذراً، يوجد ضغط كبير، يرجى الانتظار ثواني.")
+                        # التعديل هنا: نرجع قاموس فيه الرسالة اللطيفة بدل ما نرفع Exception
+                        return {"answer": "عذراً، حاول مرة أخرى.. التوكينز خلصت حالياً 😅", "sources": []}
                 else:
-                    # If it's a completely different error (e.g., bad API key), crash immediately so we can debug.
-                    raise Exception(f"خطأ من API: {e}")
+                    # لو خطأ تاني خالص (زي النت فصل) برضه نرجعه بشكل شيك
+                    return {"answer": "عذراً، حدث خطأ فني غير متوقع. حاول ثانية.", "sources": []}
 
         # Safety check: if we exhausted the loop and still have nothing, something went terribly wrong.
         if not response:

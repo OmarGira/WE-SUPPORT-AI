@@ -32,7 +32,7 @@ class QueryRequest(BaseModel):
     query: str
     file_data: Optional[str] = None       # Optional: Used if the user uploads a PDF/Docx/HTML
     image_base64: Optional[str] = None    # Optional: Used if the user uploads an image
-    #use_local_vision: bool = False        # Toggle for the BLIP local vision model
+    use_local_vision: bool = False        # Toggle for the BLIP local vision model
 
 # ================= Main Inference Endpoint =================
 @app.post("/ask")
@@ -51,7 +51,7 @@ def ask_assistant(request: QueryRequest):
             query=request.query, 
             file_data=request.file_data,
             image_base64=request.image_base64,
-            #use_local_vision=request.use_local_vision
+            use_local_vision=request.use_local_vision
         )
         return result # Automatically serialized back into JSON by FastAPI
     except Exception as e:

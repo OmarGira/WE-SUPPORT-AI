@@ -110,7 +110,7 @@ with st.sidebar:
     st.subheader("📎 المرفقات (صور وملفات)")
     
     # Toggle for local vs cloud vision processing.
-    #use_local_vision = st.checkbox("Enternal Embeddings for photo (BLIP)", value=False)
+    use_local_vision = st.checkbox("Enternal Embeddings for photo (BLIP)", value=False)
     uploaded_file = st.file_uploader("ارفع ملف", type=["pdf", "docx", "txt", "png", "jpg", "jpeg", "html", "htm"])
     
     extracted_text = ""
@@ -192,7 +192,7 @@ if prompt := st.chat_input("اكتب سؤالك هنا..."):
                     "query": prompt,
                     "file_data": extracted_text,
                     "image_base64": image_base64_data,
-                    #"use_local_vision": use_local_vision
+                    "use_local_vision": use_local_vision
                 }
                 
                 # We enforce a 60-second timeout. If the AI model stalls or the backend hangs,
