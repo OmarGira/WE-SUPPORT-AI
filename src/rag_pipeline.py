@@ -55,8 +55,6 @@ class WEAssistant:
         if results:
             for i, r in enumerate(results):
                 title = r['metadata'].get('title', 'WE Service')
-                # Notice we removed the hardcoded [1], [2] numbers here. 
-                # This stops the LLM from copying those academic-style citations into its final answer.
                 context += f"({title}): {r['text']}\n" 
         else:
             context = "لا يوجد سياق." # Fallback if nothing is found.
@@ -72,7 +70,7 @@ class WEAssistant:
         prompt = f"""
         أنت مساعد ذكي ومحترف لخدمة عملاء WE. 
         تعليمات الإجابة:
-        1. استخرج إجابتك من "المعلومات المتاحة" فقط.
+        1. استخرج إجابتك من "المعلومات المتاحة" او ابحث بدقه لاستخراجها
         2. صغ الإجابة بأسلوب طبيعي، سلس، ومباشر.
         3. ❌ ممنوع منعاً باتاً كتابة أرقام المصادر مثل [1] أو [2] داخل إجابتك.
         4. إذا تم إرفاق صورة أو كود، قم بتحليل المحتوى والإجابة بناءً عليه.

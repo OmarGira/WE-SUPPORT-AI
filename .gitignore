@@ -11,9 +11,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Vector DB & Heavy Data (We don't push heavy indices to GitHub)
-data/faiss_index.bin
-data/bm25_index.pkl
+# # Vector DB & Heavy Data (We don't push heavy indices to GitHub)
+# data/faiss_index.bin
+# data/bm25_index.pkl
 
 # VS Code / OS files
 .vscode/
